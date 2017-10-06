@@ -20,6 +20,7 @@ var Main=(function(){ //closure
 		Interactor.update_cinematics();
 		Camera.update_cinematics();
         Particule.update_cinematics();
+        SkyBox.update_cinematics(Camera.get_position());
 	};
 	function animate() { //drawing loop
     	_ThreeRenderer.render(  _ThreeScene, Camera.get_renderCamera() );
@@ -88,6 +89,9 @@ var Main=(function(){ //closure
             Particule.init({
                 loadingManager: _ThreeLoadingManager
             });
+           SkyBox.init({
+                loadingManager: _ThreeLoadingManager
+            });
 
 			//auto resize canvas if window size change
 		  	window.onresize=size_canvas;
@@ -100,11 +104,11 @@ var Main=(function(){ //closure
 				//all drawed objects :
 				var allThreeObjects=Lights.get_sceneObjects()
 									.concat(Ground.get_sceneObjects())
-									.concat(Sword.get_sceneObjects(),Particule.get_sceneObjects());
+									.concat(Sword.get_sceneObjects(),Particule.get_sceneObjects(), SkyBox.get_sceneObjects());
 				_ThreeScene.add.apply(_ThreeScene, allThreeObjects);
 
 				//objects which are pickables :
-				//_ThreePickables=_ThreePickables.concat(Tux.get_sceneObjects());
+				_ThreePickables=_ThreePickables.concat(Sword.get_sceneObjects());
 
 				start();
 			};

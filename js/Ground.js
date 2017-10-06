@@ -6,11 +6,16 @@ var Ground=(function(){
 	var that={
 		init: function(){
 
-  			var planeGeometry = new THREE.PlaneGeometry(200, 200);
+            var textureCube =  new THREE.CubeTextureLoader().setPath('assets/skybox/')
+                .load(['right.png', 'left.png', 'top.png', 'bottom.png', 'back.png', 'front.png']);
+
+
+            var planeGeometry = new THREE.PlaneGeometry(200, 200);
 			var planeMaterial = new THREE.MeshPhongMaterial( {
 			    color: 0xdddddd,
 			    specular: 0x000000,
-			    map: new THREE.TextureLoader().load('assets/textures/waa.jpg'),
+				envMap: textureCube,
+			    map: new THREE.TextureLoader().load('assets/textures/dirt.jpg'),
 			    shininess: 30 });
 			_ThreePlaneMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 

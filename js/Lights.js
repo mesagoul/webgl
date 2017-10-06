@@ -22,12 +22,12 @@ var Lights=(function(){
 		  	_ThreeSpotLight.penumbra = 0.8;
 
 		  	_ThreeSpotLight.shadow.camera.near = 5;
-		  	_ThreeSpotLight.shadow.camera.far = 60;
+		  	_ThreeSpotLight.shadow.camera.far = 80;
 		  	_ThreeSpotLight.shadow.camera.fov = 60;
 
 		  
 		 	//the ambient light <-- DO NOT FORGET IT WITH THREE.JS !!!
-		  	_ThreeAmbientLight = new THREE.AmbientLight(0x00FFFF);
+		  	_ThreeAmbientLight = new THREE.AmbientLight(0xFFFFFF);
 		  	_ThreeAmbientLight.intensity = .1;
 		}, //end init()
 

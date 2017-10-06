@@ -14,7 +14,7 @@ var Camera=(function(){ //begin closure
 			_DOMcanvas=spec.canvas;
 
 			//create the camera
-			_threeMainCamera = new THREE.PerspectiveCamera(35, _DOMcanvas.width / _DOMcanvas.height, 1, 100 );
+			_threeMainCamera = new THREE.PerspectiveCamera(35, _DOMcanvas.width / _DOMcanvas.height, 1, 1000 );
 		},
 
 		update_aspectRatio: function(){ //called when resize window for example
@@ -34,7 +34,12 @@ var Camera=(function(){ //begin closure
 			var rotXY=Interactor.get_cameraRotation();
 			_threeMainCamera.rotateY(rotXY[1]);
 			_threeMainCamera.rotateX(rotXY[0]);
+		},
+
+		get_position: function(){
+			return _threeMainCamera.position;
 		}
+
 	}; //end that
 
 	return that;
