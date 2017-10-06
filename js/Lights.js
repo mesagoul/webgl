@@ -12,29 +12,30 @@ var Lights=(function(){
 	var that={
 		init: function(){
 			//the spot
-		 	_ThreeSpotLight= new THREE.SpotLight( 0xffffff );
+		 	_ThreeSpotLight= new THREE.SpotLight( 0xFFFFFF );
 		  	Main.add_toggable(_ThreeSpotLight, 'intensity', 'spotLightIntensity'); // equivalent of _ThreeSpotLight.intensity=TOGGABLESETTINGS.spotLightIntensity.val; but will update on toggableSettings change
-		  	_ThreeSpotLight.position.set( 0,10,5 );
+		  	_ThreeSpotLight.position.set( 20,35,10 );
 		  	_ThreeSpotLight.castShadow = true;
 
 		  	_ThreeSpotLight.shadow.mapSize.width = 512;
 		  	_ThreeSpotLight.shadow.mapSize.width.height = 512;
+		  	_ThreeSpotLight.penumbra = 0.8;
 
 		  	_ThreeSpotLight.shadow.camera.near = 5;
-		  	_ThreeSpotLight.shadow.camera.far = 20;
+		  	_ThreeSpotLight.shadow.camera.far = 60;
 		  	_ThreeSpotLight.shadow.camera.fov = 60;
 
 		  
 		 	//the ambient light <-- DO NOT FORGET IT WITH THREE.JS !!!
-		  	_ThreeAmbientLight = new THREE.AmbientLight(0xffaa33);
-		  	_ThreeAmbientLight.intensity=1;
+		  	_ThreeAmbientLight = new THREE.AmbientLight(0x00FFFF);
+		  	_ThreeAmbientLight.intensity = .1;
 		}, //end init()
 
 		update_cinematics: function(){ //called at each Main.update_cinematics iteration.
-			_spotLightTheta+=0.1;
+			/*_spotLightTheta+=0.1;
 		    _spotLightX=5*Math.cos(_spotLightTheta);
 		    _spotLightZ=5*Math.sin(_spotLightTheta);
-		    _ThreeSpotLight.position.set(_spotLightX,10,_spotLightZ);
+		    _ThreeSpotLight.position.set(_spotLightX,10,_spotLightZ);*/
 		},
 
 		get_sceneObjects: function(){ //return stuffs to add to the scene

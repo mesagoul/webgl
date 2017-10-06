@@ -9,8 +9,8 @@ var Ground=(function(){
   			var planeGeometry = new THREE.PlaneGeometry(200, 200);
 			var planeMaterial = new THREE.MeshPhongMaterial( {
 			    color: 0xdddddd,
-			    specular: 0x009900,
-			    map: new THREE.TextureLoader().load('assets/textures/debug.jpg'),
+			    specular: 0x000000,
+			    map: new THREE.TextureLoader().load('assets/textures/waa.jpg'),
 			    shininess: 30 });
 			_ThreePlaneMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 

@@ -25,7 +25,7 @@ var Tux=(function(){
 		},
 
 		onPick: function(intersection){
-			alert('TUX HAS BEEN PICKED !');
+			console.log('TUX HAS BEEN PICKED !');
 		}
 
 	}; //end that

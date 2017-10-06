@@ -19,6 +19,7 @@ var Main=(function(){ //closure
 		Lights.update_cinematics();
 		Interactor.update_cinematics();
 		Camera.update_cinematics();
+        Particule.update_cinematics();
 	};
 	function animate() { //drawing loop
     	_ThreeRenderer.render(  _ThreeScene, Camera.get_renderCamera() );
@@ -43,7 +44,7 @@ var Main=(function(){ //closure
 						TOGGABLESETTINGS[toggableSettingKey].objectToChange[TOGGABLESETTINGS[toggableSettingKey].attributeToChange]=newValue;
 					}
 				}) //end controller.onChange
-			}) //end loop on toggable settings
+			}); //end loop on toggable settings
 			
 			//get the canvas from the DOM
 			_DOMcanvas = document.getElementById("your_canvas");
@@ -53,7 +54,7 @@ var Main=(function(){ //closure
 		     canvas : _DOMcanvas
 		    });
 		    _ThreeRenderer.shadowMap.enabled = true;
-		  	_ThreeRenderer.shadowMap.type = THREE.PCFShadowMap;
+		  	_ThreeRenderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 		  	//creating the loading manager
 		  	//useful to launch the rendering loop only when all stuffs are loaded
@@ -67,6 +68,7 @@ var Main=(function(){ //closure
 
 		  	//create the scene
   			_ThreeScene = new THREE.Scene();
+            _ThreeScene.fog = new THREE.Fog(0x000000, 40, 60);
 
 			//init stuffs
 			Lights.init();
@@ -77,9 +79,15 @@ var Main=(function(){ //closure
 				canvas: _DOMcanvas
 			});
 			Ground.init();
-			Tux.init({
+			/*Tux.init({
 				loadingManager: _ThreeLoadingManager
-			});
+			});*/
+            Sword.init({
+                loadingManager: _ThreeLoadingManager
+            });
+            Particule.init({
+                loadingManager: _ThreeLoadingManager
+            });
 
 			//auto resize canvas if window size change
 		  	window.onresize=size_canvas;
@@ -92,16 +100,17 @@ var Main=(function(){ //closure
 				//all drawed objects :
 				var allThreeObjects=Lights.get_sceneObjects()
 									.concat(Ground.get_sceneObjects())
-									.concat(Tux.get_sceneObjects());
+									.concat(Sword.get_sceneObjects(),Particule.get_sceneObjects());
 				_ThreeScene.add.apply(_ThreeScene, allThreeObjects);
 
 				//objects which are pickables :
-				_ThreePickables=_ThreePickables.concat(Tux.get_sceneObjects());
+				//_ThreePickables=_ThreePickables.concat(Tux.get_sceneObjects());
 
 				start();
 			};
 
 		}, //end main()
+
 
 		add_toggable: function(toggleObject, toggleAttribute, toggleKey){
 			toggleObject[toggleAttribute]=TOGGABLESETTINGS[toggleKey].val;

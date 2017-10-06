@@ -43,7 +43,7 @@ var Interactor=(function(){
 		  _DOMcanvas=spec.canvas;
 
 		  //instantiate Three.JS stuffs :
-		  _ThreeCameraPosition=new THREE.Vector3(0,5,20);
+		  _ThreeCameraPosition=new THREE.Vector3(0,5,40);
 		  Main.add_toggable(_ThreeCameraPosition, 'y', 'cameraPositionY');
 		  _ThreeDirectionVector=new THREE.Vector3();
 		  //_ThreeProjector = new THREE.Projector();
